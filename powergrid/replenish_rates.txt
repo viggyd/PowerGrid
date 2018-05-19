@@ -1,0 +1,102 @@
+{
+    2 : {
+        1 : {
+            "coal" : 0,
+            "oil" : 0,
+            "trash" : 0,
+            "uranium" : 0
+        },
+        2 : {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        3 : {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        }
+    },
+    3 : {
+        1: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        2: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        3: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        }
+    },
+    4 : {
+        1: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        2: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        3: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        }
+    },
+    5 : {
+        1: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        2: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        3: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        }
+    },
+    6: {
+        1: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        2: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        },
+        3: {
+            "coal": 0,
+            "oil": 0,
+            "trash": 0,
+            "uranium": 0
+        }
+    },
+}

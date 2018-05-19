@@ -1,0 +1,83 @@
+This is a very informal design document :D
+
+Parts of power grid:
+
+
+Resource Market
+    -> Oil Resource Pool
+    -> Coal Resource Pool
+    -> Trash Resource Pool
+    -> Uranium Resource Pool
+
+Resource Pool
+    -> Resource Type
+    -> Total Resources
+    -> Resources available
+    -> Replenish rate
+    -> Game Phase
+    -> Num Players
+
+Resource type
+    -> Coal
+    -> Oil
+    -> Trash
+    -> Uranium
+    -> Renewable
+
+
+
+Board:
+    -> City Graph
+    -> Area Graph
+    -> Player Order
+    -> Player-City mapping
+
+Player:
+    -> Cities owned
+    -> Plants owned
+    -> Current electro
+
+    -> Power cities
+    -> Bid for plant
+    -> Buy cities
+    -> Buy resources
+
+    -> Strategize
+
+Stratagem:
+
+Strategy:
+    -> Relevant phases
+    -> Relevant round
+    -> Needs board state
+    -> Create adjustment factor
+
+Plant Market
+    -> Current Market
+        -> Plants
+    -> Future Market
+        -> Plants
+    -> Plant Deck
+    -> Game Phase
+
+
+Moderator
+    -> Player list
+    -> Shuffle deck
+    -> Replenish markets
+    -> Remove Plant
+    -> Add Plant
+    -> Check for next phase
+
+
+
+
+
+
+Initial algorithm:
+1. Create players
+2. Shuffle plants
+3. Generate market
+4. Fill resources
+5. Determine player order
+6.

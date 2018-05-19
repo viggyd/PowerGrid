@@ -1,0 +1,137 @@
+{
+  "2": {
+    "Replenish" : {
+      "1": {
+        "coal": 3,
+        "oil": 2,
+        "trash": 1,
+        "uranium": 1
+      },
+      "2": {
+        "coal": 4,
+        "oil": 2,
+        "trash": 2,
+        "uranium": 1
+      },
+      "3": {
+        "coal": 3,
+        "oil": 4,
+        "trash": 3,
+        "uranium": 1
+      }
+    },
+    "Regions" : 3,
+    "Discard" : 8,
+    "MaxPlants" : 4,
+    "Step2Trigger" : 10,
+    "GameEnd" : 21
+  },
+  "3": {
+    "Replenish" : {
+      "1": {
+        "coal": 4,
+        "oil": 2,
+        "trash": 1,
+        "uranium": 1
+      },
+      "2": {
+        "coal": 5,
+        "oil": 3,
+        "trash": 2,
+        "uranium": 1
+      },
+      "3": {
+        "coal": 3,
+        "oil": 4,
+        "trash": 3,
+        "uranium": 1
+      }
+    },
+    "Regions" : 3,
+    "Discard" : 8,
+    "MaxPlants" : 3,
+    "Step2Trigger" : 7,
+    "GameEnd" : 17
+  },
+  "4": {
+    "Replenish" : {
+      "1": {
+        "coal": 5,
+        "oil": 3,
+        "trash": 2,
+        "uranium": 1
+      },
+      "2": {
+        "coal": 6,
+        "oil": 4,
+        "trash": 3,
+        "uranium": 2
+      },
+      "3": {
+        "coal": 4,
+        "oil": 5,
+        "trash": 4,
+        "uranium": 2
+      }
+    },
+    "Regions" : 4,
+    "Discard" : 4,
+    "MaxPlants" : 3,
+    "Step2Trigger" : 7,
+    "GameEnd" : 17
+  },
+  "5": {
+    "Replenish" : {
+      "1": {
+        "coal": 5,
+        "oil": 4,
+        "trash": 3,
+        "uranium": 2
+      },
+      "2": {
+        "coal": 7,
+        "oil": 6,
+        "trash": 3,
+        "uranium": 3
+      },
+      "3": {
+        "coal": 5,
+        "oil": 6,
+        "trash": 5,
+        "uranium": 2
+      }
+    },
+    "Regions" : 5,
+    "Discard" : 0,
+    "MaxPlants" : 3,
+    "Step2Trigger" : 7,
+    "GameEnd" : 15
+  },
+  "6": {
+    "Replenish": {
+      "1": {
+        "coal": 7,
+        "oil": 5,
+        "trash": 3,
+        "uranium": 2
+      },
+      "2": {
+        "coal": 9,
+        "oil": 6,
+        "trash": 5,
+        "uranium": 3
+      },
+      "3": {
+        "coal": 6,
+        "oil": 7,
+        "trash": 6,
+        "uranium": 3
+      }
+    },
+    "Regions" : 5,
+    "Discard" : 0,
+    "MaxPlants" : 3,
+    "Step2Trigger" : 6,
+    "GameEnd" : 14
+  }
+}

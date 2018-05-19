@@ -1,0 +1,14 @@
+{
+  "Available" : {
+    "Coal": 24,
+    "Oil": 24,
+    "Trash": 24,
+    "Uranium": 12
+  },
+  "Initial" : {
+    "Coal": 24,
+    "Oil": 18,
+    "Trash": 6,
+    "Uranium": 2
+  }
+}
