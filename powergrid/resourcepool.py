@@ -1,14 +1,14 @@
 import math
-from powergrid import ResourceType, GameStep
+from powergrid import ResourceType
 
 """
 Resource Pool
-    -> Resource Type
-    -> Total Resources
-    -> Resources available
-    -> Replenish rate
-    -> Game Phase
-    -> Num Players
+    a: Resource Type
+    a: Total Resources
+    a: Resources available
+    m: Buy resources
+    m: Replenish resources
+    m: Get available resources to buy 
 """
 
 
@@ -20,6 +20,7 @@ class ResourcePool(object):
         self.total_resources = pool_size
         self.available = self.total_resources
 
+        # Create a pool of resources according to the amount of resources available
         self.pool = [False] * self.total_resources
         self.pool[-initial:] = [True] * initial
 
@@ -27,8 +28,12 @@ class ResourcePool(object):
     def replenish(self, amount):
 
         pos = -1
+
+        # Iterate while we still need to replenish and we're not yet at max capacity
+        # Note that we iterate backwards.
         while amount > 0 and pos >= -len(self.pool):
 
+            # If the position is not full, fill it.
             if not self.pool[pos]:
                 self.pool[pos] = True
                 amount -= 1
@@ -71,14 +76,20 @@ class ResourcePool(object):
 
 
     def buy(self, amount):
+        """
+        Buy and remove an amount of resources from this pool
+        :param amount: The amount of the resource to remove
+        :return: True if there were available resources to remove, False otherwise
+        """
 
+        # Check if there are enough resources to buy this
         available = self.get_available_resources()
-
         if available < amount:
             return False
 
         removed = 0
 
+        # Remove resources from the pool until we have removed as much as we want
         for i in range(len(self.pool)):
 
             if self.pool[i]:
@@ -96,6 +107,9 @@ class ResourcePool(object):
 
     def get_type(self):
         return self.type
+
+    def get_total_size(self):
+        return self.total_resources
 
     def __repr__(self):
 
