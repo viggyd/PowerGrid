@@ -34,3 +34,20 @@ def resource_type_from_string(in_string):
         return ResourceType.HYBRID
     else:
         return ResourceType.COAL
+
+def string_from_type(resource_type):
+
+    if resource_type == ResourceType.COAL:
+        return "Coal"
+    elif resource_type == ResourceType.OIL:
+        return "Oil"
+    elif resource_type == ResourceType.TRASH:
+        return "Trash"
+    elif resource_type == ResourceType.URANIUM:
+        return "Uranium"
+    elif resource_type == ResourceType.RENEWABLE:
+        return "Renewable"
+    elif resource_type == ResourceType.HYBRID:
+        return "Hybrid"
+    else:
+        return "Unknown"

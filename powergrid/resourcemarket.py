@@ -114,6 +114,18 @@ class ResourceMarket(object):
 
         return self.market[resource].calculate_cost(amount)
 
+    def calculate_cost_dict(self, resource_dict):
+        """
+        Calculate cost of multiple items at once using a dictionary
+        :param resource_dict: A dictionary mapping of the resource : amount
+        :return: The cost of all resources
+        """
+        cost = 0
+        for resource, amount in resource_dict.items():
+            cost += self.calculate_cost(resource, amount)
+
+        return cost
+
     def buy(self, resource, amount):
         """
         Buy a given amount of a given resource
@@ -123,6 +135,19 @@ class ResourceMarket(object):
         """
 
         return self.market[resource].buy(amount)
+
+    def buy_multiple(self, resource_dict):
+        """
+        Buy multiple resources at once through a dictionary
+        :param resource_dict: A dictionary mapping of resource : amount
+        :return: True if resources bought, false otherwise
+        """
+        success = True
+        for resource, amount in resource_dict.items():
+            success &= self.buy(resource, amount)
+
+        return success
+
 
     def get_available_resources(self, resource):
         """

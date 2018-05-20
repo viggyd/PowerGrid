@@ -82,7 +82,9 @@ class PlantDeck(object):
         card_13 = self.base_market.pop(-1)
         self.deck.insert(0, card_13)
 
-        self.deck.append(Plant(0, ResourceType.COAL, 0, 0, True))
+        self.deck.append(Plant(100, ResourceType.COAL, 0, 0, True))
+
+        return self.base_market
 
 
     def add_to_bottom(self, plant):
@@ -107,7 +109,10 @@ class PlantDeck(object):
         Draw a card from the deck
         :return: The next card in the deck to draw
         """
-        return self.deck.pop(0)
+        if self.deck:
+            return self.deck.pop(0)
+        else:
+            return None
 
 
 
