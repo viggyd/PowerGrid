@@ -1,5 +1,5 @@
 from powergrid import ResourceType
-
+from powergrid import powergrid_utils
 
 class Plant(object):
     """
@@ -32,7 +32,7 @@ class Plant(object):
     def get_value(self):
         return self.value
 
-    def get_type(self):
+    def get_resource_type(self):
         return self.type
 
     def get_output(self):
@@ -49,13 +49,7 @@ class Plant(object):
         if self.step3:
             return "Step 3"
 
-        rep_str = "Val: {self.value}. {self.fuel} {self.type.value[1]} -> {self.output} Cities. ".format(self=self)
-
-        if self.type == ResourceType.HYBRID:
-            rep_str += "Coal: {self.storage}. Oil: {self.sec_storage}".format(self=self)
-
-        else:
-            rep_str += "Storage: {self.storage}".format(self=self)
+        rep_str = "Val: {self.value}. {self.fuel} {0:s} -> {self.output} Cities. ".format(powergrid_utils.string_from_type(self.type), self=self)
 
         return rep_str
 

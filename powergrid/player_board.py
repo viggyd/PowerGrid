@@ -37,13 +37,15 @@ from powergrid import ResourceType
 
 class PlayerBoard(object):
 
-    def __init__(self, max_plants):
+    def __init__(self, max_plants, id=None):
 
         self.cities = []
         self.plants = []
         self.elektro = 0
         self.max_plants = max_plants
         self.resource_map = {}
+        self.id = id
+        self.usage_plan = {}
 
 
     def spend_elektro(self, amount):
@@ -116,6 +118,7 @@ class PlayerBoard(object):
             resource_dict[plant.get_resource_type()] = 0
 
         self.resource_map[plant] = resource_dict
+        self.usage_plan[plant] = resource_dict.copy()
 
         self.plants.sort()
 
@@ -133,6 +136,7 @@ class PlayerBoard(object):
         # Remove old plant from list and from dictionary.
         self.plants.remove(old_plant)
         del self.resource_map[old_plant]
+        del self.usage_plan[old_plant]
 
 
         self.add_plant(new_plant)
@@ -150,11 +154,26 @@ class PlayerBoard(object):
 
         self.resource_map[plant][resource_type] += amount
 
+    def add_resource_usage_to_plan(self, plant, resource_type, amount):
+        """
+        Add a usage plan for what resources to use for each plant when it
+        comes time to power
+        :param plant: The plant to generate plan for
+        :param resource_type: The type of resource
+        :param amount: The amount to add for usage
+        :return:
+        """
 
-    def add_cities(self, city):
+        self.usage_plan[plant][resource_type] += amount
+
+
+    def add_city(self, city):
         self.cities.append(city)
 
-    def power_plants(self, plant_resource_map):
+    def add_cities(self, city_list):
+        self.cities.extend(city_list)
+
+    def power_plants(self, plant_resource_map=None):
         """
         Power the plants in the given plant list. This requires
         :param plant_resource_map: A dictionary containing the plants to power
@@ -175,29 +194,41 @@ class PlayerBoard(object):
             ResourceType.URANIUM : 0
         }
 
+        cities_powered = 0
+
+        if plant_resource_map is None:
+            plant_resource_map = self.usage_plan
+
         for plant, usage in plant_resource_map.items():
 
             storage = self.resource_map[plant]
             plant_type = plant.get_resource_type()
 
 
-            if usage is None and plant_type != ResourceType.HYBRID:
+
+
+            if plant_type == ResourceType.HYBRID:
+
+                storage[ResourceType.COAL] -= usage[ResourceType.COAL]
+                usage_report[ResourceType.COAL] += usage[ResourceType.COAL]
+                self.usage_plan[plant][ResourceType.COAL] = 0
+
+                storage[ResourceType.OIL] -= usage[ResourceType.OIL]
+                usage_report[ResourceType.OIL] += usage_report[ResourceType.OIL]
+                self.usage_plan[plant][ResourceType.OIL] = 0
+
+                self.resource_map[plant] = storage
+
+            elif plant_type != ResourceType.RENEWABLE:
                 current_storage = storage[plant_type]
                 current_storage -= plant.get_required_fuel()
                 usage_report[plant_type] += plant.get_required_fuel()
                 self.resource_map[plant][plant_type] = current_storage
+                self.usage_plan[plant][plant_type] = 0
 
-            elif plant_type == ResourceType.HYBRID:
+            cities_powered += plant.get_output()
 
-                storage[ResourceType.COAL] -= usage[ResourceType.COAL]
-                usage_report[ResourceType.COAL] += usage[ResourceType.COAL]
-
-                storage[ResourceType.OIL] -= usage[ResourceType.OIL]
-                usage_report[ResourceType.OIL] += usage_report[ResourceType.OIL]
-
-                self.resource_map[plant] = storage
-
-        return usage_report
+        return (usage_report, cities_powered)
 
 
     def can_power_plant(self, plant):
@@ -217,3 +248,36 @@ class PlayerBoard(object):
             return True
         else:
             return False
+
+    def get_id(self):
+        """
+        Get my ID
+        :return: My ID
+        """
+        return self.id
+
+    def get_total_output(self):
+        """
+        Get the total number of cities powerable given the plants in board
+        :return: The number of plants that can be powered
+        """
+        powerable = 0
+        for plant in self.plants:
+            powerable += plant.get_output()
+
+        return powerable
+
+
+    def __lt__(self, other):
+
+        if len(self.cities) < len(other.cities):
+            return True
+        elif len(self.cities) > len(other.cities):
+            return False
+
+        # In this case, number of cities are equal. Check plants.
+        return self.plants[-1] < other.plants[-1]
+
+    def __repr__(self):
+
+        return "Name: {self.id}. Num Cities: {0:d}. Elektro: {self.elektro}".format(len(self.cities), self=self)
