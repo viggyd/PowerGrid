@@ -27,14 +27,18 @@ class PlantMarket(object):
         Remove highest card from actual/future market and add to bottom of deck
         :return: The highest value power plant in the market
         """
-        return self.market.pop(-1)
+        plant = self.market.pop(-1)
+        self.layout()
+        return plant
 
     def remove_lowest(self):
         """
         Remove lowest plant from actual/future market and discard
         :return: The lowest value power plant in the market
         """
-        return self.market.pop(0)
+        plant = self.market.pop(0)
+        self.layout()
+        return plant
 
     def auction_plant(self, plant):
         """
@@ -55,6 +59,7 @@ class PlantMarket(object):
         Get the futures market
         :return: The future market
         """
+
         return self.future
 
     def get_market_size(self):
@@ -69,6 +74,13 @@ class PlantMarket(object):
         Adds a new power plant to the market
         :param new_plant: The plant to be added of type Plant
         """
+
+        # If the new plant is empty, it means the draw stack is empty.
+        # Don't do anything in this case.
+        if new_plant is None:
+            self.layout()
+            return
+
         self.market.append(new_plant)
         self.layout()
 
@@ -118,11 +130,36 @@ class PlantMarket(object):
         :return: False if market size is not equal to s3 actual size. True otherwise
         """
 
-        if len(self.market) != MARKET_S3_ACT_SIZE:
-            return False
-
         # We do this to make a deep copy.
+        # In step 3, there is no future market.
         self.actual = self.market[:]
 
         return True
+
+    def remove_plants_below_value(self, value):
+        """
+        Get the number of plants below a given value.
+        This is used in phase 4 when removing small plants.
+        Only plants from the actual market are removed
+        :param value: The value to check
+        :return: The number of plants removed
+        """
+
+        # Get number of plants to remove from actual market
+        self.layout()
+
+        num_removed = 0
+        for plant in self.actual:
+
+            # If the value of plant in actual market is less than specified,
+            # remove from main market and add one to the counter
+            if plant.get_value() <= value:
+                num_removed += 1
+                self.market.remove(plant)
+
+        return num_removed
+
+
+
+
 
