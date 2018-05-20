@@ -1,0 +1,7 @@
+{
+  "MainSettings" : "settings.json",
+  "Players" : "player_profiles.json",
+  "Payout" : "payout_settings.csv",
+  "PlantDeck" : "power_plants.csv",
+  "InitResources" : "initial_resources.json"
+}
