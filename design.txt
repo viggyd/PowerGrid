@@ -3,19 +3,25 @@ This is a very informal design document :D
 Parts of power grid:
 
 
-Resource Market
-    -> Oil Resource Pool
-    -> Coal Resource Pool
-    -> Trash Resource Pool
-    -> Uranium Resource Pool
+
 
 Resource Pool
-    -> Resource Type
-    -> Total Resources
-    -> Resources available
-    -> Replenish rate
-    -> Game Phase
-    -> Num Players
+    a: Resource Type
+    a: Total Resources
+    a: Resources available
+    m: Buy resources
+    m: Replenish resources
+    m: Get available resources to buy
+
+Resource Market
+    a: Oil Resource Pool
+    a: Coal Resource Pool
+    a: Trash Resource Pool
+    a: Uranium Resource Pool
+
+    m: Buy resources
+    m: Replenish resources
+    m: Get available resources
 
 Resource type
     -> Coal
@@ -32,15 +38,107 @@ Board:
     -> Player Order
     -> Player-City mapping
 
-Player:
-    -> Cities owned
-    -> Plants owned
-    -> Current electro
 
-    -> Power cities
-    -> Bid for plant
-    -> Buy cities
-    -> Buy resources
+
+Player Board:
+
+    Although in PowerGrid, a player does not have a specific board that is theirs,
+    like in Viticulture, there is undeniably a board state for each player. For
+    the purposes of our initial analysis, this board is all we really need.
+    Everything else will be strategy. The board, for example, is not allowed to see
+    what the actual/future markets are. That is the job of the intelligence behind
+    the board.
+
+    In this manner, I again try to separate policy from mechanism.
+
+    a: Cities owned
+    a: Plants owned
+    a: Current elektro
+    a: Max plants allowed
+
+    m: Get number of cities
+    m: Remove elektro
+    
+    
+
+    Phase 2: Auction Power Plants
+    m: Get power plants
+    m: Add plant to board
+    m: Replace plant
+    
+    Phase 3: Buying Resources
+    m: Get resources on each plant
+    m: Add resources to plant
+
+    Phase 4: Building
+    m: Add cities to network
+
+    Phase 5: Bureaucracy
+    m: Remove resources from plant
+    m: Get elektro for plants powered
+    
+
+Player:
+    Note, starred items are strategies.
+
+    As awkward as it is, the player needs references to the resource market,
+    the plant market, the board, and the moderator.
+    They won't have access to the important functions.
+
+    It's important to note the distinction between a player's board state and
+    the actual player intelligence. This class sort of melds both together
+    because it is difficult to separate the two. For example, the player's
+    board state will have the number of plants, the plants, the resources, etc.
+    But it won't do any of the strategy. That, in the analysis case, is the job
+    of the simulator, but eventually will be the job of the AI.
+
+    As with everything else, it will not be up to the user to determine the policy.
+    Only the mechanism.
+
+    One of the problems
+
+    a: Cities owned
+    a: Plants owned
+    a: Current elektro
+    a: Max plants allowed
+
+    a: Total money spent in round
+    a: Total money earned in round
+
+    m: Reset money spent/earned
+
+    Phase 1: Determine player order
+    m: Get number of cities
+
+    Phase 2: Auction Power Plants
+    a: Plant purchased this round
+    a: Money spent on plant
+    m: Should I try to buy a plant?*
+    m: See actual market
+    m: See future market
+    m: Auction plant
+    m: Bid for plant
+    m: Pass
+
+    Phase 3: Buying Resources
+    a: Money spent on resources
+    m: Check needed resources based on plants
+    m: Buy resources
+    m: Determine cost of resources vs. money from cities*
+
+
+    Phase 4: Building
+    a: Money spent on cities
+    m: Buy cities
+
+    Phase 5: Bureaucracy
+    a: Money earned
+    m: Determine cities to power*
+    m: Power cities
+    m: Get money from powering cities
+    m: Calculate the amount of money from powering plants*
+
+
 
     -> Strategize
 
@@ -57,12 +155,17 @@ Plant Market
         -> Plants
     -> Future Market
         -> Plants
-    -> Plant Deck
     -> Game Phase
 
 
 Moderator
-    -> Player list
+    a: Player list
+    a: Power Plant Deck
+    a: Resource Market
+    a: Plant Market
+    a: Player order
+
+
     -> Shuffle deck
     -> Replenish markets
     -> Remove Plant
