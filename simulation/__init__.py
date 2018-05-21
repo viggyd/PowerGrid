@@ -1,2 +1,2 @@
-from simulation.resource_analysis_simulator import ResourceAnalysisSim
+from simulation.resource_analysis_simulator_naive import NaiveResourceAnalysisSim
 from simulation.powergrid_simulator import PowerGridSimulator

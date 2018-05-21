@@ -1,6 +1,6 @@
 import json
 import argparse
-from simulation import ResourceAnalysisSim
+from simulation import NaiveResourceAnalysisSim
 from powergrid import Plant, ResourceType
 
 if __name__ == '__main__':
@@ -31,7 +31,7 @@ if __name__ == '__main__':
         for sim_number in range(args.num_sims):
 
 
-            sim = ResourceAnalysisSim(
+            sim = NaiveResourceAnalysisSim(
                 num_players=num_player,
                 config_file=args.config_file
             )

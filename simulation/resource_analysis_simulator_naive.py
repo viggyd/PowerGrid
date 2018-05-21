@@ -4,7 +4,7 @@ from random import shuffle
 from powergrid import PlayerBoard, PlantDeck, PlantMarket, ResourceType, ResourceMarket, PowerGridSettings, GameStep
 from simulation import PowerGridSimulator
 
-class ResourceAnalysisSim(PowerGridSimulator):
+class NaiveResourceAnalysisSim(PowerGridSimulator):
 
     def __init__(self, num_players, config_file):
         """
