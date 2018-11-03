@@ -92,9 +92,7 @@ class NaiveResourceAnalysisSim(PowerGridSimulator):
             if first_turn:
                 first_turn = False
 
-
         return self.results
-
 
 
     def phase_1(self, first_turn):
@@ -106,6 +104,7 @@ class NaiveResourceAnalysisSim(PowerGridSimulator):
             shuffle(self.players)
         else:
             self.players.sort()
+
 
     def phase_2(self):
 
@@ -135,7 +134,6 @@ class NaiveResourceAnalysisSim(PowerGridSimulator):
 
                 player.replace_plant(plant, old_plant)
 
-
             # Draw a replacement
             card = self.plant_deck.draw()
 
@@ -156,10 +154,6 @@ class NaiveResourceAnalysisSim(PowerGridSimulator):
             self.plant_market.set_game_step(GameStep.STEP3)
 
 
-
-
-
-
     def phase_3(self):
 
         for player in reversed(self.players):
@@ -172,8 +166,6 @@ class NaiveResourceAnalysisSim(PowerGridSimulator):
                 fuel_required = plant.get_required_fuel()
 
                 plant_cost = 0
-
-
 
                 if resource_type == ResourceType.HYBRID:
 

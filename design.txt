@@ -184,3 +184,9 @@ Initial algorithm:
 4. Fill resources
 5. Determine player order
 6.
+
+
+
+
+How much should a player pay for a plant in an auction?
+- 
